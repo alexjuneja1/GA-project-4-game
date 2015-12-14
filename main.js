@@ -5,33 +5,21 @@ var output = document.querySelector("#output");
 
 //Map code
 var map = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 3],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0]
 ];
 
 var gameObjects = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [4, 0, 0, 0, 0, 0]
 ];
 
 //Map code
@@ -144,7 +132,7 @@ function render() {
   for (var row = 0; row < rows; row++) {
     for (var column = 0; column < columns; column++) {
       //Making cell the img tag
-      var cell = documnet.createElement("img");
+      var cell = document.createElement("img");
       //Setting its css class to cell
       cell.setAttribute("class", "cell");
       //Adding the img tag to the stage div
@@ -152,25 +140,25 @@ function render() {
       //Applying correct image to the map cell
       switch(map[row][column]) {
         case land:
-          cell.src = // image source;
+          // cell.src = image source;
           break;
 
         case town:
-          cell.src = // image source;
+          // cell.src = image source;
           break;
 
         case enemy:
-          cell.src = // image source;
+          // cell.src = image source;
           break;
 
         case goal:
-          cell.src = // image source;
+          // cell.src = image source;
           break;
       }
       //Add the caravan from the gameObjects array
       switch(gameObjects[row][column]) {
         case caravan:
-        cell.src = //image source;
+        // cell.src = image source;
         break;
       }
       //Position the cell
