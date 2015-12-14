@@ -1,0 +1,16 @@
+#stage {
+  position: relative;
+  width: 768px;
+  height: 768px;
+}
+
+.cell {
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+
+p {
+  width: 400px;
+}
