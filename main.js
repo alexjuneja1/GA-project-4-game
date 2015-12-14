@@ -48,7 +48,13 @@ var size = 64;
 var rows = map.length;
 var columns = map[0].length;
 
-//Variable and loop to track where the caravan is at when the player moves it
+//Arrow key codes
+var up = 38;
+var down = 40;
+var right = 39;
+var left = 37;
+
+//Variable and loop to track where the caravan starts at and when the player moves it
 var caravanRow;
 var caravanColumn;
 
@@ -61,6 +67,69 @@ for (var row = 0; row < rows; row++) {
   }
 }
 
+//Game variables
+
+function keydownHandler(event) {
+  switch(event.keyCode) {
+    case up:
+    //Find out if the caravan's move will be within the board
+    if (caravanRow > 0) {
+      //If so, clear the caravan's current cell
+      gameObjects[caravanRow][caravanColumn] = 0;
+      //Subtract 1 from the caravan's row to move it up one row on the map
+      caravanRow--;
+      //Apply the caravan's updated position to the array
+      gameObjects[caravanRow][caravanColumn] = caravan;
+    }
+    break;
+
+    case down:
+    if(caravanRow < rows - 1) {
+      gameObjects[caravanRow][caravanColumn] = 0;
+      caravanRow++;
+      gameObjects[caravanRow][caravanColumn] = caravan;
+    }
+    break;
+
+    case left:
+    if (caravanColumn > 0) {
+      gameObjects[caravanRow][caravanColumn] = 0;
+      caravanColumn--;
+      gameObjects[caravanRow][caravanColumn] = caravan;
+    }
+    break;
+
+    case right:
+    if (caravanColumn < columns - 1) {
+      gameObjects[caravanRow][caravanColumn] = 0;
+      caravanColumn++;
+      gameObjects[caravanRow][caravanColumn] = caravan;
+    }
+    break;
+  }
+  //Find out what kind of cell the caravan is on
+  switch(map[caravanRow][caravanColumn]) {
+    case land:
+      gameMessage = "You and your friends continue on."
+      break;
+
+    case enemy:
+      gameMessage = "Alex, you need to add the fight code here."
+      break;
+
+    case town:
+      gameMessage = "Alex, you need to add the town code here."
+      break;
+
+    case goal:
+      gameMessage = "Alex, you need to add the ending here."
+      break;
+  }
+  //Do things to the game variables here
+
+  //Re-render the game at the end of a keypress
+  render();
+}
 
 render();
 
