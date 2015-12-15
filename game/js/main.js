@@ -145,10 +145,6 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
-    case assassin:
-      gameMessage = "Alex, you need to add the fight code here."
-      break;
-
     case town1:
       gameMessage = "Alex, you need to add the town code here."
       break;
@@ -181,6 +177,11 @@ function keydownHandler(event) {
   }
   //Move the assassin with each keypress
   moveAssassin();
+
+  //Find out if the caravan and the assassin are interacting
+  if (gameObjects[caravanRow][caravanColumn] === assassin) {
+    endGame();
+  }
 
   //Re-render the game at the end of a keypress
   render();
@@ -270,6 +271,9 @@ function endGame() {
     //Remove the event listener to end the game, then add some way to return to a title overlay
     window.removeEventListener("keydown", keydownHandler, false);
   }
+  else if(gameObjects[caravanRow][caravanColumn] === assassin) {
+    gameMessage = "You have been assassinated...";
+  }
   else {
     if (food <= 0) {
       gameMessage += " You have run out of food and your party has perished...";
@@ -339,13 +343,13 @@ function render() {
           break;
 
         case goal:
-          // cell.src = image source;
+          cell.src = "./images/goal.png";
           break;
       }
       //Add the caravan from the gameObjects array
       switch(gameObjects[row][column]) {
         case caravan:
-          cell.src = "./images/caravan.png"
+          cell.src = "./images/caravan.png";
           break;
 
         case assassin:
@@ -360,7 +364,6 @@ function render() {
   }
   //Display the game messages
   output.innerHTML = gameMessage;
-
   //Display food, gold, game variables, etc
   output.innerHTML += "<br>Gold: " + gold + ", Food: " + food;
 }

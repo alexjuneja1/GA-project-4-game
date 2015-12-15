@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "css-modal": "^1.4.1",
     "express": "^4.13.3",
     "express-static": "^1.0.3"
   }
