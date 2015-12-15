@@ -157,7 +157,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the town code here."
       break;
 
-    case fort:
+    case fort1:
+      gameMessage = "Alex, you need to add the castle code here."
+      break;
+
+    case fort2:
       gameMessage = "Alex, you need to add the castle code here."
       break;
 
@@ -293,7 +297,15 @@ function render() {
           //cell.src = image source;
           break;
 
-        case town:
+        case town1:
+          cell.src = "town.png";
+          break;
+
+        case town2:
+          cell.src = "town.png";
+          break;
+
+        case town3:
           cell.src = "town.png";
           break;
 
@@ -317,7 +329,11 @@ function render() {
           cell.src = "enemywander.png";
           break;
 
-        case fort:
+        case fort1:
+          cell.src = "castle.png";
+          break;
+
+        case fort2:
           cell.src = "castle.png";
           break;
 
