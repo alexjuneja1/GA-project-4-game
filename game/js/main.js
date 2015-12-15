@@ -302,40 +302,40 @@ function render() {
           break;
 
         case town1:
-          cell.src = "town.png";
+          cell.src = "./images/town.png";
           break;
 
         case town2:
-          cell.src = "town.png";
+          cell.src = "./images/town.png";
           break;
 
         case town3:
-          cell.src = "town.png";
+          cell.src = "./images/town.png";
           break;
 
         case enemy1:
-          cell.src = "enemy1.png";
+          cell.src = "./images/enemy1.png";
           break;
 
         case enemy2:
-          cell.src = "enemy2.png";
+          cell.src = "./images/enemy2.png";
           break;
 
         case enemy3:
-          cell.src = "enemy3.png";
+          cell.src = "./images/enemy3.png";
           break;
 
         case enemy4:
-          cell.src = "enemy4.png";
+          cell.src = "./images/enemy4.png";
           break;
 
 
         case fort1:
-          cell.src = "castle.png";
+          cell.src = "./images/castle.png";
           break;
 
         case fort2:
-          cell.src = "castle.png";
+          cell.src = "./images/castle.png";
           break;
 
         case goal:
@@ -345,11 +345,11 @@ function render() {
       //Add the caravan from the gameObjects array
       switch(gameObjects[row][column]) {
         case caravan:
-          cell.src = "caravan.png"
+          cell.src = "./images/caravan.png"
           break;
 
         case assassin:
-          cell.src = "assassin.png";
+          cell.src = "./images/assassin.png";
           break;
 
       }

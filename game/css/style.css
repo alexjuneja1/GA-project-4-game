@@ -2,7 +2,7 @@
   position: relative;
   width: 384px;
   height: 384px;
-  background-image: url("overworld.png");
+  background-image: url("../images/overworld.png");
 }
 
 .cell {
