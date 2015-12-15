@@ -3,6 +3,9 @@
 var stage = document.querySelector("#stage");
 var output = document.querySelector("#output");
 
+//Keyboard listener
+window.addEventListener("keydown", keydownHandler, false);
+
 //Map code
 var map = [
   [0, 0, 0, 0, 0, 3],
