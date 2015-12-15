@@ -8,7 +8,7 @@ window.addEventListener("keydown", keydownHandler, false);
 
 //Map code
 var map = [
-  [0, 0, 0, 0, 0, 3],
+  [0, 0, 0, 0, 0, 7],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
@@ -22,15 +22,19 @@ var gameObjects = [
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
-  [4, 0, 0, 0, 0, 0]
+  [8, 0, 0, 0, 0, 0]
 ];
 
 //Map code
 var land = 0;
 var town = 1;
-var enemy = 2;
-var goal = 3;
-var caravan = 4;
+var enemy1 = 2;
+var enemy2 = 3;
+var enemy3 = 4;
+var enemy4 = 5;
+var enemywander = 6;
+var goal = 7;
+var caravan = 8;
 
 //Size of each cell on the map
 var size = 64;
@@ -104,7 +108,23 @@ function keydownHandler(event) {
       gameMessage = "You and your friends continue on."
       break;
 
-    case enemy:
+    case enemy1:
+      gameMessage = "Alex, you need to add the fight code here."
+      break;
+
+    case enemy2:
+      gameMessage = "Alex, you need to add the fight code here."
+      break;
+
+    case enemy3:
+      gameMessage = "Alex, you need to add the fight code here."
+      break;
+
+    case enemy4:
+      gameMessage = "Alex, you need to add the fight code here."
+      break;
+
+    case enemywander:
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
@@ -147,11 +167,27 @@ function render() {
           break;
 
         case town:
-          // cell.src = image source;
+          cell.src = "town.png";
           break;
 
-        case enemy:
-          // cell.src = image source;
+        case enemy1:
+          cell.src = "enemy1.png";
+          break;
+
+        case enemy2:
+          cell.src = "enemy2.png";
+          break;
+
+        case enemy3:
+          cell.src = "enemy3.png";
+          break;
+
+        case enemy4:
+          cell.src = "enemy4.png";
+          break;
+
+        case enemywander:
+          cell.src = "enemywander.png";
           break;
 
         case goal:
