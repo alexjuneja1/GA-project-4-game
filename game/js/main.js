@@ -8,8 +8,8 @@ window.addEventListener("keydown", keydownHandler, false);
 
 //Map code
 var map = [
-  [3, 6, 0, 7, 0, 11],
-  [0, 0, 0, 0, 10, 0],
+  [3, 6, 0, 7, 13, 11],
+  [0, 0, 0, 0, 10, 13],
   [0, 9, 0, 6, 0, 7],
   [0, 5, 0, 0, 2, 0],
   [4, 0, 0, 5, 0, 0],
@@ -43,6 +43,7 @@ var fort1 = 9;
 var fort2 = 10;
 var goal = 11;
 var caravan = 12;
+var dragon = 13;
 
 //Size of each cell on the map
 var size = 64;
@@ -83,8 +84,13 @@ var food = 10;
 var gold = 10;
 var counter = 0;
 var gameMessage = "Help the Ventlemen complete their quest with the arrow keys!"
+
 //Hide all event buttons
-$("#fight-button").hide();
+$("#fight-enemy1").hide();
+$("#fight-enemy2").hide();
+$("#fight-enemy3").hide();
+$("#fight-enemy4").hide();
+$("#fight-dragon").hide();
 $("#enter-town1").hide();
 $("#enter-town2").hide();
 $("#enter-town3").hide();
@@ -136,7 +142,11 @@ function keydownHandler(event) {
   //Find out what kind of cell the caravan is on
   switch(map[caravanRow][caravanColumn]) {
     case land:
-      $("#fight-button").hide();
+      $("#fight-enemy1").hide();
+      $("#fight-enemy2").hide();
+      $("#fight-enemy3").hide();
+      $("#fight-enemy4").hide();
+      $("#fight-dragon").hide();
       $("#enter-town1").hide();
       $("#enter-town2").hide();
       $("#enter-town3").hide();
@@ -147,7 +157,11 @@ function keydownHandler(event) {
 
     case enemy1:
       //Display the combat modal when on a hostile tile
-      $("#fight-button").show();
+      $("#fight-enemy1").show();
+      $("#fight-enemy2").hide();
+      $("#fight-enemy3").hide();
+      $("#fight-enemy4").hide();
+      $("#fight-dragon").hide();
       $("#enter-town1").hide();
       $("#enter-town2").hide();
       $("#enter-town3").hide();
@@ -158,43 +172,59 @@ function keydownHandler(event) {
       break;
 
     case enemy2:
-      $("#fight-button").show();
+      $("#fight-enemy1").hide();
+      $("#fight-enemy2").show();
+      $("#fight-enemy3").hide();
+      $("#fight-enemy4").hide();
+      $("#fight-dragon").hide();
       $("#enter-town1").hide();
       $("#enter-town2").hide();
       $("#enter-town3").hide();
       $("#enter-fort1").hide();
       $("#enter-fort2").hide();
-      gameMessage = "Alex, you need to add the fight code here."
+      gameMessage = "A dark mist approaches; you can sense something ahead, but you are unsure of what awaits you..."
       break;
 
     case enemy3:
       $(document).ready(function() {
-        $("#fight-button").show();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").show();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
         $("#enter-fort1").hide();
         $("#enter-fort2").hide();
       });
-      gameMessage = "Alex, you need to add the fight code here."
+      gameMessage = "With your keen senses, you can tell that an ambush lies in wait ahead. You have heard rumors of the Black Hand and their power, but now you have the chance to experience it yourself..."
       break;
 
     case enemy4:
       $(document).ready(function() {
-        $("#fight-button").show();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").show();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
         $("#enter-fort1").hide();
         $("#enter-fort2").hide();
       });
-      gameMessage = "Alex, you need to add the fight code here."
+      gameMessage = "The Elite Knights of Elysia are notorious for being the most powerful soldiers in the region. It has been said that as a rite of passage, they must slay two aged Drakes simultaneously. Unfortunately, one stands before you now."
       break;
 
     case town1:
-      gameMessage = "Alex, you need to add the town code here."
+      gameMessage = "You arrive in the bustling town of Philistine, a city that prides itself in being plentiful as far as supplies are concerned. A city of wealth and commerce, it is the last bountiful city before the High Keep of Noden."
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").show();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
@@ -204,9 +234,13 @@ function keydownHandler(event) {
       break;
 
     case town2:
-      gameMessage = "Alex, you need to add the town code here."
+      gameMessage = "You arrive in Dephetus, a small town under constant plague of bandits and hardship. Only those hardened by battle or those ravaged by poverty reside here. In spite of all that, the citizens remain hopeful that one day, the difficulties shall come to an end."
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").show();
         $("#enter-town3").hide();
@@ -216,9 +250,13 @@ function keydownHandler(event) {
       break;
 
     case town3:
-      gameMessage = "Alex, you need to add the town code here."
+      gameMessage = "You arrive in Eridesi, a mysterious tribal village off the beaten path. The residents constantly warn visitors not to stay for long and it is unknown as to why."
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").show();
@@ -228,9 +266,13 @@ function keydownHandler(event) {
       break;
 
     case fort1:
-      gameMessage = "Alex, you need to add the castle code here."
+      gameMessage = "You arrive in Castle Bant, a castle strictly reserved for soldiers to call home. Many adventurers pass through the castle, seeking quests and contracts alike."
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
@@ -240,9 +282,13 @@ function keydownHandler(event) {
       break;
 
     case fort2:
-      gameMessage = "Alex, you need to add the castle code here."
+      gameMessage = "You arrive in the Silent Fortress. Once known as the Grixis Castle, it has gone quiet for almost centuries now. No-one is sure as to why, and no-one stays long enough to find out."
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
@@ -251,10 +297,28 @@ function keydownHandler(event) {
       });
       break;
 
+    case dragon:
+      $("#fight-enemy1").hide();
+      $("#fight-enemy2").hide();
+      $("#fight-enemy3").hide();
+      $("#fight-enemy4").hide();
+      $("#fight-dragon").show();
+      $("#enter-town1").hide();
+      $("#enter-town2").hide();
+      $("#enter-town3").hide();
+      $("#enter-fort1").hide();
+      $("#enter-fort2").hide();
+      gameMessage = "You stand face-to-face with a Drake - one of the mightiest mythical beings in all of Orylia, classed as an A++ rank beast. Since the Veridian War, however, they have been considered an extremely rare and endangered species. But in order to gain passage into the High Keep of Noden, one must be defeated..."
+      break;
+
     case goal:
-      gameMessage = "Alex, you need to add the ending here."
+      endGame();
       $(document).ready(function() {
-        $("#fight-button").hide();
+        $("#fight-enemy1").hide();
+        $("#fight-enemy2").hide();
+        $("#fight-enemy3").hide();
+        $("#fight-enemy4").hide();
+        $("#fight-dragon").hide();
         $("#enter-town1").hide();
         $("#enter-town2").hide();
         $("#enter-town3").hide();
@@ -363,17 +427,17 @@ function endGame() {
   if(map[caravanRow][caravanColumn] === goal) {
     // Calculate a score
     var score = food + gold;
-    console.log("You made it home! " + "Final Score: " + score);
+    gameMessage = "You have finally arrived into the High Keep of Noden! You not only have found the last location of your allies, but you are hailed as a hero for defeating a Drake! Rest while you can, young adventurer... The search continues at dawn. (Thank you for playing! Your score is " + score + "!)";
     //Remove the event listener to end the game, then add some way to return to a title overlay
     window.removeEventListener("keydown", keydownHandler, false);
   }
   else if(gameObjects[caravanRow][caravanColumn] === assassin) {
-    gameMessage = "You have been assassinated...";
+    gameMessage = "Before you can even blink, you notice a large wound that has recently been inflicted upon you. You have been killed!";
     window.removeEventListener("keydown", keydownHandler, false);
   }
   else {
     if (food <= 0) {
-      gameMessage += " You have run out of food and your party has perished...";
+      gameMessage += "You have run out of food and you have perished!";
       //Remove the event listener to end the game, then add some way to return to a title overlay
       window.removeEventListener("keydown", keydownHandler, false);
     }
@@ -437,6 +501,10 @@ function render() {
 
         case fort2:
           cell.src = "./images/castle.png";
+          break;
+
+        case dragon:
+          cell.src ="./images/dragon.png";
           break;
 
         case goal:

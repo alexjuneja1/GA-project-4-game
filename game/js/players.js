@@ -7,8 +7,7 @@ function Player(options) {
   this.experience = options.experience,
   this.strength = options.strength,
   this.defense = options.defense,
-  this.agility = options.agility,
-  this.charisma = options.charisma
+  this.inventory = []
 }
 
 Alex = new Player({name: "Alex", level: 1, health: 100, experience: 0})
