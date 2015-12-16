@@ -8,17 +8,17 @@ window.addEventListener("keydown", keydownHandler, false);
 
 //Map code
 var map = [
-  [0, 0, 0, 7, 0, 11],
-  [0, 3, 6, 0, 10, 0],
-  [6, 0, 0, 6, 0, 7],
-  [0, 5, 9, 0, 2, 5],
-  [4, 0, 0, 4, 0, 5],
+  [3, 6, 0, 7, 0, 11],
+  [0, 0, 0, 0, 10, 0],
+  [0, 9, 0, 6, 0, 7],
+  [0, 5, 0, 0, 2, 0],
+  [4, 0, 0, 5, 0, 0],
   [0, 0, 1, 0, 4, 0]
 ];
 
 var gameObjects = [
-  [8, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
+  [0, 0, 8, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
@@ -308,6 +308,7 @@ function endGame() {
   }
   else if(gameObjects[caravanRow][caravanColumn] === assassin) {
     gameMessage = "You have been assassinated...";
+    window.removeEventListener("keydown", keydownHandler, false);
   }
   else {
     if (food <= 0) {
@@ -381,7 +382,7 @@ function render() {
           cell.src = "./images/goal.png";
           break;
       }
-      //Add the caravan from the gameObjects array
+      //Add the caravan and the assassin from the gameObjects array
       switch(gameObjects[row][column]) {
         case caravan:
           cell.src = "./images/caravan.png";
