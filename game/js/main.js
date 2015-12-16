@@ -83,9 +83,15 @@ var food = 10;
 var gold = 10;
 var counter = 0;
 var gameMessage = "Help the Ventlemen complete their quest with the arrow keys!"
+//Hide all event buttons
+$("#fight-button").hide();
+$("#enter-town1").hide();
+$("#enter-town2").hide();
+$("#enter-town3").hide();
+$("#enter-fort1").hide();
+$("#enter-fort2").hide();
 
 render();
-$("#fight-button").hide();
 
 function keydownHandler(event) {
   switch(event.keyCode) {
@@ -131,24 +137,44 @@ function keydownHandler(event) {
   switch(map[caravanRow][caravanColumn]) {
     case land:
       $("#fight-button").hide();
+      $("#enter-town1").hide();
+      $("#enter-town2").hide();
+      $("#enter-town3").hide();
+      $("#enter-fort1").hide();
+      $("#enter-fort2").hide();
       gameMessage = "You and your friends continue on."
       break;
 
     case enemy1:
       //Display the combat modal when on a hostile tile
       $("#fight-button").show();
+      $("#enter-town1").hide();
+      $("#enter-town2").hide();
+      $("#enter-town3").hide();
+      $("#enter-fort1").hide();
+      $("#enter-fort2").hide();
       gameMessage = "You spot some soldiers coming your way. But something seems off about them..."
       console.log("You are about to fight some soldiers.");
       break;
 
     case enemy2:
       $("#fight-button").show();
+      $("#enter-town1").hide();
+      $("#enter-town2").hide();
+      $("#enter-town3").hide();
+      $("#enter-fort1").hide();
+      $("#enter-fort2").hide();
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
     case enemy3:
       $(document).ready(function() {
         $("#fight-button").show();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       gameMessage = "Alex, you need to add the fight code here."
       break;
@@ -156,6 +182,11 @@ function keydownHandler(event) {
     case enemy4:
       $(document).ready(function() {
         $("#fight-button").show();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       gameMessage = "Alex, you need to add the fight code here."
       break;
@@ -164,6 +195,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the town code here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").show();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       break;
 
@@ -171,6 +207,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the town code here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").hide();
+        $("#enter-town2").show();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       break;
 
@@ -178,6 +219,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the town code here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").show();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       break;
 
@@ -185,6 +231,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the castle code here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").show();
+        $("#enter-fort2").hide();
       });
       break;
 
@@ -192,6 +243,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the castle code here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").show();
       });
       break;
 
@@ -199,6 +255,11 @@ function keydownHandler(event) {
       gameMessage = "Alex, you need to add the ending here."
       $(document).ready(function() {
         $("#fight-button").hide();
+        $("#enter-town1").hide();
+        $("#enter-town2").hide();
+        $("#enter-town3").hide();
+        $("#enter-fort1").hide();
+        $("#enter-fort2").hide();
       });
       break;
   }
