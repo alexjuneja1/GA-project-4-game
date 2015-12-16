@@ -81,9 +81,11 @@ for (var row = 0; row < rows; row++) {
 //Game variables
 var food = 10;
 var gold = 10;
+var counter = 0;
 var gameMessage = "Help the Ventlemen complete their quest with the arrow keys!"
 
 render();
+$("#fight-button").hide();
 
 function keydownHandler(event) {
   switch(event.keyCode) {
@@ -122,58 +124,91 @@ function keydownHandler(event) {
       gameObjects[caravanRow][caravanColumn] = caravan;
     }
     break;
+
+    event.preventDefault();
   }
   //Find out what kind of cell the caravan is on
   switch(map[caravanRow][caravanColumn]) {
     case land:
+      $("#fight-button").hide();
       gameMessage = "You and your friends continue on."
       break;
 
     case enemy1:
-      gameMessage = "Alex, you need to add the fight code here."
+      //Display the combat modal when on a hostile tile
+      $("#fight-button").show();
+      gameMessage = "You spot some soldiers coming your way. But something seems off about them..."
+      console.log("You are about to fight some soldiers.");
       break;
 
     case enemy2:
+      $("#fight-button").show();
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
     case enemy3:
+      $(document).ready(function() {
+        $("#fight-button").show();
+      });
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
     case enemy4:
+      $(document).ready(function() {
+        $("#fight-button").show();
+      });
       gameMessage = "Alex, you need to add the fight code here."
       break;
 
     case town1:
       gameMessage = "Alex, you need to add the town code here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
 
     case town2:
       gameMessage = "Alex, you need to add the town code here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
 
     case town3:
       gameMessage = "Alex, you need to add the town code here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
 
     case fort1:
       gameMessage = "Alex, you need to add the castle code here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
 
     case fort2:
       gameMessage = "Alex, you need to add the castle code here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
 
     case goal:
       gameMessage = "Alex, you need to add the ending here."
+      $(document).ready(function() {
+        $("#fight-button").hide();
+      });
       break;
   }
   //Subtract food by 1 each turn
   food--;
+  //Add 1 to the counter each turn
+  counter++;
   //Check if the caravan has run out of food
   if (food <= 0) {
-    console.log("The end game function goes here.")
+    endGame();
   }
   //Move the assassin with each keypress
   moveAssassin();
@@ -365,5 +400,5 @@ function render() {
   //Display the game messages
   output.innerHTML = gameMessage;
   //Display food, gold, game variables, etc
-  output.innerHTML += "<br>Gold: " + gold + ", Food: " + food;
+  output.innerHTML += "<br>Gold: " + gold + ", Food: " + food + ", Turn Count: " + counter;
 }
