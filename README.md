@@ -19,3 +19,8 @@ Welcome to **"A Ventleman's Adventure"**, a game that tests luck and good judgme
 * Working modals to produce an experience akin to no other simplified adventure game, where many moral decisions are crafted and the user gets to experience more of the Orylia.
 * Modals to produce intense action and combat sequences.
 * Items that allow the user to control the flow of battle and even things such as the amount of food they carry.
+
+###How to Use:
+Navigating through the game is quite simple. Move the arrow keys to take a turn. Each action, depending on the tile you land on, is done automatically for you. Good luck!
+
+![Game](http://i.imgur.com/Dih9y29.png)
