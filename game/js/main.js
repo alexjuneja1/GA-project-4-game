@@ -82,8 +82,9 @@ for (var row = 0; row < rows; row++) {
 //Game variables
 var food = 10;
 var gold = 10;
+var experience = 0;
 var counter = 0;
-var gameMessage = "Help the Ventlemen complete their quest with the arrow keys!"
+var gameMessage = "Help Alyx get to his destination with the arrow keys!"
 
 //Hide all event buttons
 $("#fight-enemy1").hide();
@@ -156,6 +157,7 @@ function keydownHandler(event) {
       break;
 
     case enemy1:
+      fight();
       //Display the combat modal when on a hostile tile
       $("#fight-enemy1").show();
       $("#fight-enemy2").hide();
@@ -167,11 +169,12 @@ function keydownHandler(event) {
       $("#enter-town3").hide();
       $("#enter-fort1").hide();
       $("#enter-fort2").hide();
-      gameMessage = "You spot some soldiers coming your way. But something seems off about them..."
+      // gameMessage = "You spot some soldiers coming your way. But something seems off about them..."
       console.log("You are about to fight some soldiers.");
       break;
 
     case enemy2:
+      fight();
       $("#fight-enemy1").hide();
       $("#fight-enemy2").show();
       $("#fight-enemy3").hide();
@@ -182,10 +185,11 @@ function keydownHandler(event) {
       $("#enter-town3").hide();
       $("#enter-fort1").hide();
       $("#enter-fort2").hide();
-      gameMessage = "A dark mist approaches; you can sense something ahead, but you are unsure of what awaits you..."
+      // gameMessage = "A dark mist approaches; you can sense something ahead, but you are unsure of what awaits you..."
       break;
 
     case enemy3:
+      fight();
       $(document).ready(function() {
         $("#fight-enemy1").hide();
         $("#fight-enemy2").hide();
@@ -198,10 +202,11 @@ function keydownHandler(event) {
         $("#enter-fort1").hide();
         $("#enter-fort2").hide();
       });
-      gameMessage = "With your keen senses, you can tell that an ambush lies in wait ahead. You have heard rumors of the Black Hand and their power, but now you have the chance to experience it yourself..."
+      // gameMessage = "With your keen senses, you can tell that an ambush lies in wait ahead. You have heard rumors of the Black Hand and their power, but now you have the chance to experience it yourself..."
       break;
 
     case enemy4:
+      fight();
       $(document).ready(function() {
         $("#fight-enemy1").hide();
         $("#fight-enemy2").hide();
@@ -214,11 +219,12 @@ function keydownHandler(event) {
         $("#enter-fort1").hide();
         $("#enter-fort2").hide();
       });
-      gameMessage = "The Elite Knights of Elysia are notorious for being the most powerful soldiers in the region. It has been said that as a rite of passage, they must slay two aged Drakes simultaneously. Unfortunately, one stands before you now."
+      // gameMessage = "The Elite Knights of Elysia are notorious for being the most powerful soldiers in the region. It has been said that as a rite of passage, they must slay two aged Drakes simultaneously. Unfortunately, one stands before you now."
       break;
 
     case town1:
-      gameMessage = "You arrive in the bustling town of Philistine, a city that prides itself in being plentiful as far as supplies are concerned. A city of wealth and commerce, it is the last bountiful city before the High Keep of Noden."
+      // gameMessage = "You arrive in the bustling town of Philistine, a city that prides itself in being plentiful as far as supplies are concerned. A city of wealth and commerce, it is the last bountiful city before the High Keep of Noden."
+      trade();
       $(document).ready(function() {
         $("#fight-enemy1").hide();
         $("#fight-enemy2").hide();
@@ -234,7 +240,8 @@ function keydownHandler(event) {
       break;
 
     case town2:
-      gameMessage = "You arrive in Dephetus, a small town under constant plague of bandits and hardship. Only those hardened by battle or those ravaged by poverty reside here. In spite of all that, the citizens remain hopeful that one day, the difficulties shall come to an end."
+      // gameMessage = "You arrive in Dephetus, a small town under constant plague of bandits and hardship. Only those hardened by battle or those ravaged by poverty reside here. In spite of all that, the citizens remain hopeful that one day, the difficulties shall come to an end."
+      trade();
       $(document).ready(function() {
         $("#fight-enemy1").hide();
         $("#fight-enemy2").hide();
@@ -250,7 +257,8 @@ function keydownHandler(event) {
       break;
 
     case town3:
-      gameMessage = "You arrive in Eridesi, a mysterious tribal village off the beaten path. The residents constantly warn visitors not to stay for long and it is unknown as to why."
+      // gameMessage = "You arrive in Eridesi, a mysterious tribal village off the beaten path. The residents constantly warn visitors not to stay for long and it is unknown as to why."
+      trade();
       $(document).ready(function() {
         $("#fight-enemy1").hide();
         $("#fight-enemy2").hide();
@@ -298,6 +306,7 @@ function keydownHandler(event) {
       break;
 
     case dragon:
+      fight();
       $("#fight-enemy1").hide();
       $("#fight-enemy2").hide();
       $("#fight-enemy3").hide();
@@ -308,7 +317,7 @@ function keydownHandler(event) {
       $("#enter-town3").hide();
       $("#enter-fort1").hide();
       $("#enter-fort2").hide();
-      gameMessage = "You stand face-to-face with a Drake - one of the mightiest mythical beings in all of Orylia, classed as an A++ rank beast. Since the Veridian War, however, they have been considered an extremely rare and endangered species. But in order to gain passage into the High Keep of Noden, one must be defeated..."
+      // gameMessage = "You stand face-to-face with a Drake - one of the mightiest mythical beings in all of Orylia, classed as an A++ rank beast. Since the Veridian War, however, they have been considered an extremely rare and endangered species. But in order to gain passage into the High Keep of Noden, one must be defeated..."
       break;
 
     case goal:
@@ -335,6 +344,12 @@ function keydownHandler(event) {
   if (food <= 0) {
     endGame();
   }
+
+  //Check if the caravan has run out of gold
+  if (gold <= 0) {
+    endGame();
+  }
+
   //Move the assassin with each keypress
   moveAssassin();
 
@@ -345,6 +360,58 @@ function keydownHandler(event) {
 
   //Re-render the game at the end of a keypress
   render();
+}
+
+function trade() {
+  //Figure out how much food the island has and how much it should cost.
+  var townsFood = experience + gold;
+  var cost = Math.ceil(Math.random() * townsFood);
+
+  //Let the player buy food if there's enough gold to afford it.
+  if (gold > cost) {
+    food += townsFood;
+    gold -= cost;
+    experience += 2;
+    gameMessage
+      = "You buy " + townsFood + " food" + " for " + cost + " gold pieces."
+  } else {
+    //Tell the player he does not have enough gold.
+    experience += 1;
+    gameMessage = "You don't have enough gold to buy food."
+  }
+}
+
+function fight() {
+  //Caravan strength
+  var caravanStrength = Math.ceil((food + gold) / 2);
+
+  //A random number between 1 and the caravan's strength.
+  var enemyStrength = Math.ceil(Math.random() * caravanStrength * 2);
+
+  //Find out if the enemy is stronger than the player.
+  if (enemyStrength > caravanStrength) {
+    //The enemy ransacks the caravan
+    var stolenGold = Math.round(enemyStrength / 2);
+    gold -= stolenGold;
+
+    //Give experience for trying
+    experience += 1;
+
+    //Update the game message
+    gameMessage
+      = "You fight and LOSE " + stolenGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + " Enemy's Strength: " + enemyStrength;
+  } else {
+    //The player wins the enemy's gold.
+    var enemyGold = Math.round(enemyStrength / 2);
+    gold += enemyGold;
+
+    //Add some experience
+    experience += 2;
+
+    //Update the game message
+    gameMessage
+      = "You fight and WIN " + enemyGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + " Enemy's Strength: " + enemyStrength;
+  }
 }
 
 function moveAssassin() {
@@ -432,17 +499,17 @@ function endGame() {
     window.removeEventListener("keydown", keydownHandler, false);
   }
   else if(gameObjects[caravanRow][caravanColumn] === assassin) {
-    gameMessage = "Before you can even blink, you notice a large wound that has recently been inflicted upon you. You have been killed!";
+    gameMessage = "<br>Before you can even blink, you notice a large wound that has recently been inflicted upon you. You have been killed!";
     window.removeEventListener("keydown", keydownHandler, false);
-  }
-  else {
-    if (food <= 0) {
-      gameMessage += "You have run out of food and you have perished!";
+  } else if (food <= 0) {
+      gameMessage += "<br>You have run out of food and you have perished!";
       //Remove the event listener to end the game, then add some way to return to a title overlay
+      window.removeEventListener("keydown", keydownHandler, false);
+    } else if (gold <= 0) {
+      gameMessage += "<br>Your caravan is destroyed!";
       window.removeEventListener("keydown", keydownHandler, false);
     }
   }
-}
 
 function render() {
   //Clearing the stage of img tag cells from the previous turn
@@ -530,5 +597,5 @@ function render() {
   //Display the game messages
   output.innerHTML = gameMessage;
   //Display food, gold, game variables, etc
-  output.innerHTML += "<br>Gold: " + gold + ", Food: " + food + ", Turn Count: " + counter;
+  output.innerHTML += "<br>Gold: " + gold + ", Food: " + food + ", Turn Count: " + counter + ", Experience: " + experience;
 }
