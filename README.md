@@ -23,4 +23,6 @@ Welcome to **"A Ventleman's Adventure"**, a game that tests luck and good judgme
 ###How to Use:
 Navigating through the game is quite simple. Move the arrow keys to take a turn. Each action, depending on the tile you land on, is done automatically for you. Good luck!
 
+![Wireframe](http://i.imgur.com/y44bBMJ.png)
+
 ![Game](http://i.imgur.com/Dih9y29.png)
