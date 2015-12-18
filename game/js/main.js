@@ -80,7 +80,7 @@ for (var row = 0; row < rows; row++) {
 }
 
 //Game variables
-var food = 10;
+var food = 9;
 var gold = 10;
 var experience = 0;
 var counter = 0;
@@ -399,7 +399,7 @@ function fight() {
 
     //Update the game message
     gameMessage
-      = "You fight and LOSE " + stolenGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + " Enemy's Strength: " + enemyStrength;
+      = "You fight and LOSE " + stolenGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + "<br>Enemy's Strength: " + enemyStrength;
   } else {
     //The player wins the enemy's gold.
     var enemyGold = Math.round(enemyStrength / 2);
@@ -410,7 +410,7 @@ function fight() {
 
     //Update the game message
     gameMessage
-      = "You fight and WIN " + enemyGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + " Enemy's Strength: " + enemyStrength;
+      = "You fight and WIN " + enemyGold + " gold." + "<br>Your Party's Strength: " + caravanStrength + "<br>Enemy's Strength: " + enemyStrength;
   }
 }
 
@@ -494,6 +494,15 @@ function endGame() {
   if(map[caravanRow][caravanColumn] === goal) {
     // Calculate a score
     var score = food + gold;
+
+    // Use Ajax calls to push var score up to the database
+    var data = {score:score}
+    $.ajax({
+    type: "POST",
+    url: '/score',
+    data: data
+    });
+
     gameMessage = "You have finally arrived into the High Keep of Noden! You not only have found the last location of your allies, but you are hailed as a hero for defeating a Drake! Rest while you can, young adventurer... The search continues at dawn. (Thank you for playing! Your score is " + score + "!)";
     //Remove the event listener to end the game, then add some way to return to a title overlay
     window.removeEventListener("keydown", keydownHandler, false);
